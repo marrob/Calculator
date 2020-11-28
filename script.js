@@ -40,7 +40,6 @@ const calculate = (line) => {
     return evaluate(valueArray,operatorArray);
 }
 
-
 const evaluate = (valueArray, operatorArray) => {
     let numberIndex = 0;
     let result = valueArray[numberIndex];
@@ -59,8 +58,8 @@ const evaluate = (valueArray, operatorArray) => {
 }
 
 const btnListener = (e)=>{
+    const char = e.target.getAttribute('data')
 
-    const char = e.target.textContent.trim();
     if(char === 'C'){ //törlés
        line = '';
        updateInputDisplay('');
@@ -80,5 +79,4 @@ const btnListener = (e)=>{
         updateInputDisplay(line);
     }
 }
-
 openListeners();

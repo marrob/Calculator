@@ -59,9 +59,16 @@ body {
     height: var(--button-height);
     margin: var(--button-margin);
     background-color:#F9F9F9;
+    user-select: none; /*nem lehet kijelölni*/
+    /*tartalom középre*/
     display:flex;
     align-items: center;
     justify-content: center;
+    /*effect*/
+    transition: 0.3s;
+}
+.div__btn:hover {
+    border: 2px solid orange;
 }
 
 .grow{
