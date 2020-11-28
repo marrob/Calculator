@@ -1,11 +1,16 @@
 'use strict'
 //let line ='22.1-45+1-2*23/5-23.2'
-let line ='1+1+1';
+let line ='';
 
-const updateDisplay = (text)=>{
-  const display = document.querySelector('.calculator__display');
-  display.textContent = text;
+const updateInputDisplay = (text)=>{
+  const display = document.querySelector('.display__input');
+  display.innerHTML = text;
 }
+
+const updateResultDisplay = (text)=>{
+    const display = document.querySelector('.display__result');
+    display.innerHTML = text;
+  }
 
 const openListeners = () => {
     const btn = document.querySelectorAll('.div__btn');
@@ -19,7 +24,7 @@ const calculate = (line) => {
     let operatorArray = [];
     let number='';
     if(isNaN(line[0])) 
-        updateDisplay('hupsz! 0. helyen csak szám lehet...');
+        updateResultDisplay('hupsz! 0. helyen csak szám lehet...');
         [...line].forEach(char=>{ //végigmegyek minden karakteren
             if(!isNaN(char) || char==='.') //ha az aktális karakter szám
                 number += char;
@@ -28,7 +33,7 @@ const calculate = (line) => {
                 number='';
                 operatorArray.push(char);
             }else{//ha nem szám és nem operátor akkor hiba
-                updateDisplay(`hupsz! ${i} helyen csak szám vagy operátor lehet...`);
+                updateResultDisplay(`hupsz! ${i} helyen csak szám vagy operátor lehet...`);
             }
         });
         valueArray.push(parseFloat(number)); //az utolsó számot még hozzá kell adni (1-el több szám lesz mint operátor)
@@ -55,21 +60,25 @@ const evaluate = (valueArray, operatorArray) => {
 
 const btnListener = (e)=>{
 
-    console.log(e.target.textContent);
     const char = e.target.textContent.trim();
-    if(char === 'C'){
-        line = '';
-        updateDisplay('');
+    if(char === 'C'){ //törlés
+       line = '';
+       updateInputDisplay('');
+       updateResultDisplay('');
     }
-    else if(char==='='){
-        updateDisplay(/*calculate(line).toString()*/'asdfasdf');
+    else if(char==='='){//eredmény
+        if(line.length > 1){
+            updateResultDisplay(calculate(line).toString());
+            line='';
+        }
+        else{
+            updateResultDisplay('');
+        }
     }
     else{
         line+= char;
+        updateInputDisplay(line);
     }
-
-    updateDisplay(line);
 }
 
-updateDisplay("line");
 openListeners();

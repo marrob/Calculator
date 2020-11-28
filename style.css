@@ -4,6 +4,7 @@
     --button-height:30px;
     --button-width:50px;
     --button-margin:5px;
+    --display-height:50px;
     --border-color: #F2F2F2;
 }
 
@@ -26,8 +27,25 @@ body {
 
 .calculator__display{
     border: 2px solid var(--border-color);
-    height: 40px;
+    height: var(--display-height);
     margin: var(--button-margin);
+}
+
+
+.calculator__display .display__input{
+    /*background-color: red;*/
+    height: calc(var(--display-height)/2);
+    display:flex;
+    align-items: center;
+    justify-content: left;
+}
+
+.calculator__display .display__result{
+    /*background-color: blue;*/
+    height: calc(var(--display-height)/2);
+    display:flex;
+    align-items: center;
+    justify-content: left;
 }
 
 .div__keypad{
