@@ -71,13 +71,13 @@ body {
     border: 2px solid orange;
 }
 
-.grow{
+.btn--grow{
    height: calc(4 * var(--button-height) + 3 * (var(--button-margin))) ;
    background-color: #4D8FFD;
    color:#FFF
 }
 
-.btn--operators{
+.btn__operator{
   background-color:#DDDDDD;
 }
 
