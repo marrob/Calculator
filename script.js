@@ -24,16 +24,20 @@ const calculate = (line) => {
     let operatorArray = [];
     let number='';
     if(isNaN(line[0])) 
-        updateResultDisplay('hupsz! 0. helyen csak szám lehet...');
+        updateInputDisplay('Hiba');
         [...line].forEach(char=>{ //végigmegyek minden karakteren
             if(!isNaN(char) || char==='.') //ha az aktális karakter szám
                 number += char;
             else if(isOperator(char)){//ha nem szám, akkor lehet hogy operátor
-                valueArray.push(parseFloat(number));
+                const temp = parseFloat(number);
+                if(isNaN(temp)){
+                    updateInputDisplay('Hiba');
+                }
+                valueArray.push(temp);
                 number='';
                 operatorArray.push(char);
             }else{//ha nem szám és nem operátor akkor hiba
-                updateResultDisplay(`hupsz! ${i} helyen csak szám vagy operátor lehet...`);
+                updateInputDisplay('Hiba');
             }
         });
         valueArray.push(parseFloat(number)); //az utolsó számot még hozzá kell adni (1-el több szám lesz mint operátor)
@@ -68,7 +72,6 @@ const btnListener = (e)=>{
     else if(char==='='){//eredmény
         if(line.length > 1){
             updateResultDisplay(calculate(line).toString());
-            line='';
         }
         else{
             updateResultDisplay('');
