@@ -44,22 +44,22 @@ const calculate = (line) => {
     return evaluate(valueArray,operatorArray);
 }
 
+const doOpObj = {
+    '+' : function(a,b) { return a + b },
+    '-' : function(a,b) { return a - b },
+    '*' : function(a,b) { return a * b },
+    '/' : function(a,b) { return a / b },
+}
 const evaluate = (valueArray, operatorArray) => {
     let numberIndex = 0;
     let result = valueArray[numberIndex];
     operatorArray.forEach(operator=>{
-        numberIndex ++;
-        if(operator==='+')
-            result += valueArray[numberIndex];
-        else if(operator==='-')
-            result -= valueArray[numberIndex];
-        else if(operator==='*')
-            result *= valueArray[numberIndex];
-        else if(operator==='/')
-            result /= valueArray[numberIndex];
+    result = doOpObj[operator](result,valueArray[++numberIndex]);
     });
     return result;
 }
+
+
 
 const btnListener = (e)=>{
     const char = e.target.getAttribute('data')
@@ -83,3 +83,4 @@ const btnListener = (e)=>{
     }
 }
 openListeners();
+

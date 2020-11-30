@@ -1,6 +1,4 @@
-:root {
-    --green: #0a880a;
-    --red: #960707; 
+:root { 
     --button-height:30px;
     --button-width:50px;
     --button-margin:5px;
@@ -20,6 +18,7 @@ body {
 *{
     box-sizing: border-box;
 }
+
 .calculator__container{
     border: 1px solid var(--border-color);
     width:250px;
@@ -31,9 +30,8 @@ body {
     margin: var(--button-margin);
 }
 
-
 .calculator__display .display__input{
-    /*background-color: red;*/
+
     height: calc(var(--display-height)/2);
     display:flex;
     align-items: center;
@@ -41,7 +39,7 @@ body {
 }
 
 .calculator__display .display__result{
-    /*background-color: blue;*/
+
     height: calc(var(--display-height)/2);
     display:flex;
     align-items: center;
@@ -49,8 +47,13 @@ body {
 }
 
 .div__keypad{
-    width:250px;
     display:flex;
+}
+
+/*ez a grow miatt kell...*/
+.keypad__column{
+    display: flex;
+    flex-direction:column;
 }
 
 .div__btn{
@@ -67,12 +70,13 @@ body {
     /*effect*/
     transition: 0.3s;
 }
+
 .div__btn:hover {
     border: 2px solid orange;
 }
 
 .btn--grow{
-   height: calc(4 * var(--button-height) + 3 * (var(--button-margin))) ;
+   flex-grow:1;
    background-color: #4D8FFD;
    color:#FFF
 }
